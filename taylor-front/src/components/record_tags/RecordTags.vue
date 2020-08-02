@@ -97,3 +97,17 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.container {
+  /* height: 100%; */
+  /* padding-bottom: 30%; */
+  /* overflow: auto;
+  box-sizing: border-box; */
+  color: #ffffff;
+}
+.jumbotron {
+  background: #6d3d6d;
+  border-radius: 5% 40% 40% 5%
+}
+</style>

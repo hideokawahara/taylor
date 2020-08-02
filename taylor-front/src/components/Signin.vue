@@ -20,7 +20,7 @@
 
               <button type="submit" class="btn btn-lg btn-primary btn-block" @click="reload">ログインする</button>
 
-              <div class="my-4"><router-link to="/signup" class="m-4">新規登録はこちら</router-link></div>
+              <div class="my-4 signup"><router-link to="/signup" class="m-4 signupinside">新規登録はこちら</router-link></div>
             </form>
           </div>
         </div>
@@ -80,11 +80,49 @@ export default {
 </script>
 
 <style scoped>
-.bg-green {
-  background-color: aqua;
+.card.card-signin.my-5 {
+  background: #6d3d6d;
+  color: #ffffff;
+  border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
+  border: 6px solid rgb(20, 17, 19);
+}
+/* .bg-green {
+  background: #6d3d6d;
+} */
+
+/* .bg-green:hover {
+  background-color: aquamarine;
+} */
+.btn.btn-lg.btn-primary.btn-block {
+  background: #3c1f3c;
+  border-color: gold;
 }
 
-.bg-green:hover {
-  background-color: aquamarine;
+.btn.btn-lg.btn-primary.btn-block:hover {
+  background-color: rgb(240, 41, 230);
+  color: gold;
+  opacity: 0.5;
 }
+
+.signupinside {
+  color: #ffffff;
+  /* transition-property: color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-delay: 0s; */
+  transition: color .3s, background.3s, box-shadow .3s, transform .3s;
+}
+
+.signupinside:hover {
+  /* color: rgb(255, 136, 0); */
+  color: rgb(240, 41, 230);
+  animation: flash 1s;
+}
+
+@keyframes flash {
+  0% { color: #cca90c; }
+  10% { color: rgb(240, 41, 230); }
+  100% { color: #ebaf0d; }
+}
+
 </style>

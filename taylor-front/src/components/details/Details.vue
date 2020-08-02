@@ -28,7 +28,7 @@
           v-model="newRecord.year">
       </div>
 
-      <div class="m-3">
+      <div class="m-3 janre">
         <label for="tag" class="label">ジャンル</label>
         <select id="tag" class="select" v-model="newRecord.tag">
           <option disabled value="">Select an tag</option>
@@ -37,22 +37,24 @@
         <p class="pt-4">ジャンルがなければ <router-link to="/record_tags" class="btn btn-success m-3">作ろう</router-link></p>
       </div>
 
-      <input type="submit" value="投稿する" class="btn btn-primary m-3">
+      <input type="submit" value="投稿する" class="btn btn-primary m-3 submit">
     </form>
 
     <hr class="border border-grey-light my-6" />
 
     <ul class="row">
-      <li class="col-md-3 m-4" v-for="record in records" :key="record.id" :record="record" style="list-style: none;">
+      <li class="col-md-3 m-4 rev" v-for="record in records" :key="record.id" :record="record" style="list-style: none;">
         <div class="">
           <div class="">
           <p class="">
+            コンテンツの名前:::::
             {{ record.title }}
           </p>
-          <p class="">
+          <p class="ml-4">
+            点数:::::
             {{ record.year }}
           </p>
-          <p class="">{{ getTag(record) }}</p>
+          <p class="ml-5">{{ getTag(record) }}</p>
         </div>
 
         <button class="btn btn-outline-dark m-2"
@@ -159,3 +161,69 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.container {
+  background: #4c2a4c;
+  color: #ffffff;
+  /* margin-bottom: 0; */
+  border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
+  border: 2px dotted rgb(253, 250, 250);
+}
+
+.m-3.janre {
+    font-weight: bold;
+    background: #6d3d6d;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    border-radius: 20px;
+    border-style: dashed;
+  }
+
+.btn.btn-success.m-3 {
+  background: #3c1f3c;
+  border-color: gold;
+}
+
+.btn.btn-success.m-3:hover {
+  background-color: rgb(240, 41, 230);
+  color: gold;
+  opacity: 0.5;
+}
+
+.col-md-3.m-4.rev {
+  border-style: dotted;
+  border-radius: 60px;
+  padding: 1rem;
+  background: #6d3d6d;
+  font-weight: bold;
+}
+
+.btn.btn-primary.m-3.submit {
+  background: #7c47c0;
+  border-color: gold;
+}
+
+.btn.btn-primary.m-3.submit:hover {
+  background-color: rgb(160, 41, 240);
+  color: gold;
+  opacity: 0.5;
+}
+
+@media (min-width:768px) {
+  .form-group {
+    width: 40rem;
+    justify-content: center;
+  }
+  .m-3.janre {
+    width: 40%;
+    margin-left: 30% !important;
+  }
+  .btn.btn-primary.m-3.submit {
+    margin-left: 70% !important;
+  }
+  .col-md-3.m-4.rev {
+    padding: 2rem;
+  }
+}
+</style>
