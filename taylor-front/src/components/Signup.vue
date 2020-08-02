@@ -24,7 +24,7 @@
               </div>
               <button type="submit" class="btn btn-lg btn-primary btn-block">新規登録ありがとうございます</button>
 
-              <div class="my-4"><router-link to="/" class="m-4">ログインはこちら</router-link></div>
+              <div class="my-4"><router-link to="/" class="m-4 logininside">ログインはこちら</router-link></div>
             </form>
           </div>
         </div>
@@ -82,5 +82,41 @@ export default {
 </script>
 
 <style scoped>
+.card.card-signin.my-5 {
+  border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
+  border: 2px solid #333;
+  color: #ffffff;
+  background: #6d3d6d;
+}
 
+.btn.btn-lg.btn-primary.btn-block {
+  background: #3c1f3c;
+  border-color: gold;
+}
+
+.btn.btn-lg.btn-primary.btn-block:hover {
+  background-color: rgb(240, 41, 230);
+  color: gold;
+  opacity: 0.5;
+}
+
+.logininside {
+  color: #ffffff;
+  /* transition-property: color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-delay: 0s; */
+  transition: color .3s, background.3s, box-shadow .3s, transform .3s;
+}
+
+.logininside:hover {
+  color: rgb(240, 41, 230);
+  animation: flash 1s;
+}
+
+@keyframes flash {
+  0% { color: #cca90c; }
+  10% { color: rgb(240, 41, 230); }
+  100% { color: #ebaf0d; }
+}
 </style>

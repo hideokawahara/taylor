@@ -15,3 +15,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  #app {
+    background: #553055;
+    /* bottom: 0; */
+    padding-bottom: 18%;
+    min-height: 100%;
+  }
+</style>
