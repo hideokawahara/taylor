@@ -10,6 +10,7 @@
 
               <div class="m-2">
                 <label for="email" class="">メールアドレス</label>
+                <!-- <p class="errors" v-for="error in errors.email" :key="error">{{error}}</p> -->
                 <input type="email" v-model="email" class="form-control" id="email" placeholder="アドレス打ってね">
               </div>
 
@@ -37,6 +38,10 @@ export default {
       email: '',
       password: '',
       error: ''
+      // errors: {
+      //   email: [],
+      //   password: []
+      // }
     }
   },
   created () {
@@ -75,6 +80,22 @@ export default {
     reload () {
       console.log('test')
     }
+    // validator (type, max) {
+    //   let email = []
+    //   let password = []
+    //   let message = max + '文字内で入力してね'
+    //   if (type === 'email') {
+    //     if (this.email.length > max) {
+    //       email.push(message)
+    //     }
+    //     this.errors.email = email
+    //   } else if (type === 'password') {
+    //     if (this.password.length > max) {
+    //       password.push(message)
+    //     }
+    //     this.errors.password = password
+    //   }
+    // }
   }
 }
 </script>

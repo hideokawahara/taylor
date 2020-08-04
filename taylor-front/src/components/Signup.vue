@@ -10,17 +10,20 @@
 
               <div class="m-2">
                 <label for="email" class="label">メールアドレス</label>
+                <!-- <p class="errors" v-for="error in errors.email" :key="error">{{error}}</p> -->
                 <input type="email" v-model="email" class="form-control" id="email" placeholder="メールアドレス打ってね">
               </div>
 
               <div class="m-2">
                 <label for="password" class="label">パスワード</label>
-                <input type="password" v-model="password" class="form-control" id="password" placeholder="パスワード打ってね">
+                <p class="errors" v-for="error in errors.password" :key="error">{{error}}</p>
+                <input type="password" v-model="password" class="form-control" id="password" placeholder="パスワード打ってね" @input="validator('password', 15)">
               </div>
 
               <div class="m-2">
                 <label for="password_confirmation" class="label">パスワード確認用</label>
-                <input type="password" v-model="password_confirmation" class="form-control" id="password_confirmation" placeholder="もう一度打ってね">
+                <p class="errors" v-for="error in errors.password_confirmation" :key="error">{{error}}</p>
+                <input type="password" v-model="password_confirmation" class="form-control" id="password_confirmation" placeholder="もう一度打ってね" @input="validator('password_confirmation', 15)">
               </div>
               <button type="submit" class="btn btn-lg btn-primary btn-block">新規登録ありがとうございます</button>
 
@@ -41,7 +44,12 @@ export default {
       email: '',
       password: '',
       password_confirmation: '',
-      error: ''
+      error: '',
+      errors: {
+        email: [],
+        password: [],
+        password_confirmation: []
+      }
     }
   },
   created () {
@@ -75,6 +83,28 @@ export default {
     checkedSignedIn () {
       if (localStorage.signedIn) {
         this.$router.replace('/details')
+      }
+    },
+    validator (type, max) {
+      let email = []
+      let password = []
+      let passwordConfirmation = []
+      let message = max + '文字内で入力してね'
+      if (type === 'email') {
+        if (this.email.length > max) {
+          email.push(message)
+        }
+        this.errors.email = email
+      } else if (type === 'password') {
+        if (this.password.length > max) {
+          password.push(message)
+        }
+        this.errors.password = password
+      } else if (type === 'password_confirmation') {
+        if (this.password_confirmation.length > max) {
+          passwordConfirmation.push(message)
+        }
+        this.errors.password_confirmation = passwordConfirmation
       }
     }
   }
@@ -118,5 +148,10 @@ export default {
   0% { color: #cca90c; }
   10% { color: rgb(240, 41, 230); }
   100% { color: #ebaf0d; }
+}
+
+.errors {
+  color: red;
+  font-size: 1.5rem;
 }
 </style>
