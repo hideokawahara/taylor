@@ -16,16 +16,18 @@
 
               <div class="m-2">
                 <label for="password" class="label">パスワード</label>
-                <p class="errors" v-for="error in errors.password" :key="error">{{error}}</p>
+                <!-- <p class="errors" v-for="error in errors.password" :key="error">{{error}}</p> -->
+                <errors :errors="errors.password"></errors>
                 <input type="password" v-model="password" class="form-control" id="password" placeholder="パスワード打ってね" @input="validator('password', 15)">
               </div>
 
               <div class="m-2">
                 <label for="password_confirmation" class="label">パスワード確認用</label>
-                <p class="errors" v-for="error in errors.password_confirmation" :key="error">{{error}}</p>
-                <input type="password" v-model="password_confirmation" class="form-control" id="password_confirmation" placeholder="もう一度打ってね" @input="validator('password_confirmation', 15)">
+                <!-- <p class="errors" v-for="error in errors.password_confirmation" :key="error">{{error}}</p> -->
+                <errors :errors="errors.password_confirmation"></errors>
+                <input type="password" v-model="password_confirmation" class="form-control" id="password_confirmation" placeholder="もう一度打ってね" @input="validator('password_confirmation', 16)">
               </div>
-              <button type="submit" class="btn btn-lg btn-primary btn-block">新規登録ありがとうございます</button>
+              <button type="submit" @click.prevent="validate" class="btn btn-lg btn-primary btn-block">新規登録ありがとうございます</button>
 
               <div class="my-4"><router-link to="/" class="m-4 logininside">ログインはこちら</router-link></div>
             </form>
@@ -37,8 +39,13 @@
 </template>
 
 <script>
+import errors from './errors'
+
 export default {
   name: 'Signup',
+  components: {
+    errors
+  },
   data () {
     return {
       email: '',
@@ -106,6 +113,31 @@ export default {
         }
         this.errors.password_confirmation = passwordConfirmation
       }
+    },
+    validate () {
+      let errors = {
+        password: [],
+        passwordConfirmation: []
+      }
+      if (!this.password) {
+        errors.password.push('パスワードが入力されてません')
+        this.errors.password = errors.password
+      } else if (this.password.length > 15) {
+        errors.password.push('15文字以内に入力しましょう')
+      }
+      if (!this.password_confirmation) {
+        console.log(1, this.password_confirmation)
+        console.log(2, errors.passwordConfirmation)
+        errors.passwordConfirmation.push('確認パスワードが入力されてません')
+        console.log(3, errors.passwordConfirmation)
+        this.errors.password_confirmation = errors.passwordConfirmation
+        console.log(4, this.errors.password_confirmation)
+      } else if (this.ppassword_confirmation.length > 15) {
+        errors.passwordConfirmation.push('16文字以内に入力しましょう')
+      }
+      // this.errors = errors
+      // console.log(5, errors.passwordConfirmation)
+      // console.log(6, this.errors.password_confirmation)
     }
   }
 }
